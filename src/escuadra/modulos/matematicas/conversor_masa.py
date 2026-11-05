@@ -3,9 +3,7 @@ from chuspacalc.modulos.matematicas.error_validacion import ErrorValidacion
 
 def convertir_masa(valor, unidad_origen, unidad_destino):
     if valor < 0:
-        raise ErrorValidacion(
-            f"La masa no puede ser negativa (valor recibido: {valor})"
-        )
+        raise ErrorValidacion(f"La masa no puede ser negativa (valor recibido: {valor})")
 
     factores = {
         "kg": 1.0,
@@ -19,14 +17,12 @@ def convertir_masa(valor, unidad_origen, unidad_destino):
 
     if unidad_origen not in factores:
         raise ValueError(
-            f"Unidad desconocida: {unidad_origen}. "
-            f"Unidades válidas: {list(factores.keys())}"
+            f"Unidad desconocida: {unidad_origen}. Unidades válidas: {list(factores.keys())}"
         )
 
     if unidad_destino not in factores:
         raise ValueError(
-            f"Unidad desconocida: {unidad_destino}. "
-            f"Unidades válidas: {list(factores.keys())}"
+            f"Unidad desconocida: {unidad_destino}. Unidades válidas: {list(factores.keys())}"
         )
 
     valor_kg = valor * factores[unidad_origen]

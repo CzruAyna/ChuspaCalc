@@ -15,9 +15,7 @@ def test_cargar_herramienta_exitosamente():
     cargador.cargar(HerramientaPrueba)
 
     ventana.mostrar_herramienta.assert_called_once()
-    ventana.mostrar_mensaje_estado.assert_called_once_with(
-        "Herramienta activa: HerramientaPrueba"
-    )
+    ventana.mostrar_mensaje_estado.assert_called_once_with("Herramienta activa: HerramientaPrueba")
     assert isinstance(cargador.herramienta_actual(), HerramientaPrueba)
 
 

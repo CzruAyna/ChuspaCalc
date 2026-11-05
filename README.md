@@ -48,9 +48,9 @@ Los estudiantes y docentes de ingeniería suelen necesitar realizar cálculos re
 
 **Escuadra** resuelve esto ofreciendo:
 
-✅ Una interfaz unificada y limpia.  
-✅ Herramientas organizadas por carrera.  
-✅ Resultados claros y, cuando es posible, con detalle del proceso.  
+✅ Una interfaz unificada y limpia.
+✅ Herramientas organizadas por carrera.
+✅ Resultados claros y, cuando es posible, con detalle del proceso.
 ✅ Un sistema extensible para que cualquier estudiante pueda agregar nuevas herramientas.
 
 ---

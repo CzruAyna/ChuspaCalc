@@ -79,24 +79,24 @@ ChuspaCalc/
 
 ### Decisión 1: Arquitectura Modular por rama de Ingeniería
 
-**Contexto:** El proyecto cubre múltiples áreas de ingeniería con necesidades distintas.  
-**Decisión:** Separar cada rama en módulos independientes dentro de src/ChuspaCalc/modulos/  
+**Contexto:** El proyecto cubre múltiples áreas de ingeniería con necesidades distintas.
+**Decisión:** Separar cada rama en módulos independientes dentro de src/ChuspaCalc/modulos/
 **Consecuencias:** Permite desarrollo paralelo sin conflictos y facilita agregar nuevas herramientas.
 
 ---
 
 ### Decisión 2: Interfaz gráfica con PySide6
 
-**Contexto:** Se requiere una aplicación de escritorio accesible para estudiantes y profesionales.  
-**Decisión:** Usar PySide6 como framework de UI, con componentes reutilizables en src/ChuspaCalc/ui/.  
+**Contexto:** Se requiere una aplicación de escritorio accesible para estudiantes y profesionales.
+**Decisión:** Usar PySide6 como framework de UI, con componentes reutilizables en src/ChuspaCalc/ui/.
 **Consecuencias:** Interfaz multiplataforma (Windows, Linux, macOS) con el binding oficial de Qt para Python.
 
 ---
 
 ### Decisión 3: Módulos de cálculo independientes de la UI
 
-**Contexto:** Las funciones de cálculo deben poder usarse desde la UI, la CLI o directamente como librería.  
-**Decisión:** Separar la lógica de cálculo (módulos) de la capa de presentación (ui, cli).  
+**Contexto:** Las funciones de cálculo deben poder usarse desde la UI, la CLI o directamente como librería.
+**Decisión:** Separar la lógica de cálculo (módulos) de la capa de presentación (ui, cli).
 **Consecuencias:** Código reutilizable y más fácil de testear de forma aislada.
 
 ---

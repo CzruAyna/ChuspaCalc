@@ -6,11 +6,11 @@ Este módulo proporciona la documentación técnica y la base teórica para el c
 
 La constante de tiempo (denominada tau) representa el tiempo necesario para que la variable de interés (tensión o corriente) alcance aproximadamente el **63.2%** de su cambio total hacia el valor estacionario.
 
-* **Circuitos RC (Resistor-Capacitor):** 
+* **Circuitos RC (Resistor-Capacitor):**
   tau = R * C
   Donde **R** es la resistencia en ohmios (Ohm) y **C** es la capacitancia en faradios (F).
 
-* **Circuitos RL (Resistor-Inductor):** 
+* **Circuitos RL (Resistor-Inductor):**
   tau = L / R
   Donde **L** es la inductancia en henrios (H) y **R** es la resistencia en ohmios (Ohm).
 

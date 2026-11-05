@@ -2,9 +2,7 @@ from typing import Any, Dict
 
 
 def calcular_momento_max(
-    longitud: float,
-    carga: float,
-    tipo_carga: str = 'puntual_central'
+    longitud: float, carga: float, tipo_carga: str = "puntual_central"
 ) -> Dict[str, Any]:
     """
     Calcula el momento flector máximo en un elemento civil.
@@ -29,28 +27,20 @@ def calcular_momento_max(
     """
     if longitud <= 0:
         raise ValueError(
-            f"El parámetro 'longitud' debe ser mayor que cero. "
-            f"Se recibió: {longitud}."
+            f"El parámetro 'longitud' debe ser mayor que cero. Se recibió: {longitud}."
         )
 
     if carga <= 0:
-        raise ValueError(
-            f"El parámetro 'carga' debe ser mayor que cero. "
-            f"Se recibió: {carga}."
-        )
+        raise ValueError(f"El parámetro 'carga' debe ser mayor que cero. Se recibió: {carga}.")
 
-    if tipo_carga == 'puntual_central':
+    if tipo_carga == "puntual_central":
         momento = carga * longitud / 4
-    elif tipo_carga == 'distribuida':
-        momento = carga * (longitud ** 2) / 8
+    elif tipo_carga == "distribuida":
+        momento = carga * (longitud**2) / 8
     else:
         raise ValueError(
             f"Tipo de carga '{tipo_carga}' no soportado. "
             "Tipos válidos: 'puntual_central' y 'distribuida'."
         )
 
-    return {
-        'momento_max': float(momento),
-        'posicion': float(longitud / 2),
-        'unidad': 'kN·m'
-    }
+    return {"momento_max": float(momento), "posicion": float(longitud / 2), "unidad": "kN·m"}

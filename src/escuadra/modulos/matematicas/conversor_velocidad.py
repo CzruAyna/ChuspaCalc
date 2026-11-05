@@ -4,9 +4,7 @@ def convertir_velocidad(
     unidad_destino,
 ):
     if valor < 0:
-        raise ValueError(
-            "La velocidad no puede ser negativa"
-        )
+        raise ValueError("La velocidad no puede ser negativa")
 
     factores = {
         "m/s": 1.0,
@@ -18,21 +16,14 @@ def convertir_velocidad(
 
     if unidad_origen not in factores:
         raise ValueError(
-            f"Unidad desconocida: {unidad_origen}. "
-            f"Unidades válidas: {list(factores.keys())}"
+            f"Unidad desconocida: {unidad_origen}. Unidades válidas: {list(factores.keys())}"
         )
 
     if unidad_destino not in factores:
         raise ValueError(
-            f"Unidad desconocida: {unidad_destino}. "
-            f"Unidades válidas: {list(factores.keys())}"
+            f"Unidad desconocida: {unidad_destino}. Unidades válidas: {list(factores.keys())}"
         )
 
-    valor_ms = (
-        valor * factores[unidad_origen]
-    )
+    valor_ms = valor * factores[unidad_origen]
 
-    return (
-        valor_ms
-        / factores[unidad_destino]
-    )
+    return valor_ms / factores[unidad_destino]

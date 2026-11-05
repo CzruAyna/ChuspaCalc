@@ -96,4 +96,4 @@ Este cálculo puede utilizarse en:
 
 # Observaciones
 
-La fórmula de Euler es válida principalmente para columnas largas y esbeltas sometidas a carga axial de compresión. 
+La fórmula de Euler es válida principalmente para columnas largas y esbeltas sometidas a carga axial de compresión.

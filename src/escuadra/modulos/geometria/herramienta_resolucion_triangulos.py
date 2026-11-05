@@ -71,9 +71,7 @@ class HerramientaResolucionTriangulos(Herramienta):
                 a, b, c = resolver_triangulo_lados(v1, v2, v3)
 
                 texto = (
-                    f"Ángulo A: {round(a, 2)}°\n"
-                    f"Ángulo B: {round(b, 2)}°\n"
-                    f"Ángulo C: {round(c, 2)}°"
+                    f"Ángulo A: {round(a, 2)}°\nÁngulo B: {round(b, 2)}°\nÁngulo C: {round(c, 2)}°"
                 )
 
             else:
@@ -84,9 +82,7 @@ class HerramientaResolucionTriangulos(Herramienta):
                 )
 
                 texto = (
-                    f"Lado B: {round(b, 2)}\n"
-                    f"Lado C: {round(c, 2)}\n"
-                    f"Ángulo C: {round(angulo_c, 2)}°"
+                    f"Lado B: {round(b, 2)}\nLado C: {round(c, 2)}\nÁngulo C: {round(angulo_c, 2)}°"
                 )
 
             self._resultado.setText(texto)

@@ -71,8 +71,7 @@ def multiplicar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]
 
     if cols_a != len(b):
         raise ValueError(
-            f"Dimensiones incompatibles para multiplicación: "
-            f"{filas_a}x{cols_a} y {len(b)}x{cols_b}"
+            f"Dimensiones incompatibles para multiplicación: {filas_a}x{cols_a} y {len(b)}x{cols_b}"
         )
 
     return [
@@ -84,9 +83,7 @@ def multiplicar(a: list[list[float]], b: list[list[float]]) -> list[list[float]]
 def _validar_dimensiones(a: list[list[float]], b: list[list[float]]) -> None:
     """Valida que dos matrices tengan las mismas dimensiones."""
     if len(a) != len(b) or len(a[0]) != len(b[0]):
-        raise ValueError(
-            f"Dimensiones incompatibles: {len(a)}x{len(a[0])} y {len(b)}x{len(b[0])}"
-        )
+        raise ValueError(f"Dimensiones incompatibles: {len(a)}x{len(a[0])} y {len(b)}x{len(b[0])}")
 
 
 def transponer(a: list[list[float]]) -> list[list[float]]:

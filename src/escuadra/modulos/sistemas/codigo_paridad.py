@@ -56,4 +56,3 @@ def verificar_paridad(datos_con_paridad: str, tipo: str = "par") -> bool:
         return cantidad_unos % 2 != 0
 
     raise ValueError("El tipo debe ser 'par' o 'impar'")
-    

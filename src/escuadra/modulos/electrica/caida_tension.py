@@ -70,8 +70,7 @@ def calcular_caida(
     if material_lower not in RESISTIVIDADES:
         materiales_validos = ", ".join(f"'{m}'" for m in RESISTIVIDADES)
         raise ValueError(
-            f"Material '{material}' no reconocido. "
-            f"Valores aceptados: {materiales_validos}."
+            f"Material '{material}' no reconocido. Valores aceptados: {materiales_validos}."
         )
 
     # Validar parametros positivos
@@ -83,9 +82,7 @@ def calcular_caida(
     }
     for nombre, valor in parametros.items():
         if valor <= 0:
-            raise ValueError(
-                f"El parametro '{nombre}' debe ser positivo. " f"Se recibio: {valor}."
-            )
+            raise ValueError(f"El parametro '{nombre}' debe ser positivo. Se recibio: {valor}.")
     if not 0.0 <= factor_potencia <= 1.0:
         raise ValueError(
             "El factor de potencia debe pertenecer al intervalo [0.0, 1.0]. "

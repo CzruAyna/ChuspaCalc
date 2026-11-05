@@ -44,9 +44,7 @@ def construir_menu(
 
         for clase in herramientas:
             accion = QAction(clase.nombre, ventana)
-            accion.triggered.connect(
-                lambda checked=False, c=clase: callback_seleccion(c)
-            )
+            accion.triggered.connect(lambda checked=False, c=clase: callback_seleccion(c))
             submenu.addAction(accion)
 
     # Menú Herramientas: lista plana con todas las herramientas
@@ -57,7 +55,5 @@ def construir_menu(
     else:
         for clase in todas:
             accion = QAction(clase.nombre, ventana)
-            accion.triggered.connect(
-                lambda checked=False, c=clase: callback_seleccion(c)
-            )
+            accion.triggered.connect(lambda checked=False, c=clase: callback_seleccion(c))
             menu_herramientas.addAction(accion)

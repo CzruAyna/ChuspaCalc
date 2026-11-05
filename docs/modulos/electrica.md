@@ -24,7 +24,7 @@ El triángulo de Ohm es una herramienta mnemotécnica útil para recordar las tr
    /|\
   / | \
  /  |  \
-I---R--- 
+I---R---
 ```
 
 - Para calcular V: cubre V → V = I · R

@@ -18,6 +18,7 @@ from chuspacalc.core.herramienta import Herramienta
 
 # Función pura de conversión
 
+
 def convertir_unidad(valor: float, de_unidad: str, a_unidad: str, categoria: str) -> float:
     """
     Convierte un valor entre unidades de la misma categoría.
@@ -36,18 +37,18 @@ def convertir_unidad(valor: float, de_unidad: str, a_unidad: str, categoria: str
     """
     factores: dict[str, dict[str, float]] = {
         "Potencia": {
-            "W":  1,
+            "W": 1,
             "kW": 1_000,
             "MW": 1_000_000,
             "HP": 745.7,
             "CV": 735.5,
         },
         "Energía": {
-            "J":   1,
-            "kJ":  1_000,
-            "Wh":  3_600,
+            "J": 1,
+            "kJ": 1_000,
+            "Wh": 3_600,
             "kWh": 3_600_000,
-            "MJ":  1_000_000,
+            "MJ": 1_000_000,
         },
     }
 
@@ -68,17 +69,17 @@ def convertir_unidad(valor: float, de_unidad: str, a_unidad: str, categoria: str
 
 # Widget
 
+
 class HerramientaConversionElectrica(Herramienta):
-    nombre      = "Conversión de unidades eléctricas"
-    carrera     = Carrera.ELECTRICA
+    nombre = "Conversión de unidades eléctricas"
+    carrera = Carrera.ELECTRICA
     descripcion = (
-        "Convierte entre unidades de potencia (W, kW, HP)"
-        "y unidades de energía (Wh, kWh, J)."
+        "Convierte entre unidades de potencia (W, kW, HP)y unidades de energía (Wh, kWh, J)."
     )
 
     _UNIDADES: dict[str, list[str]] = {
         "Potencia": ["W", "kW", "MW", "HP", "CV"],
-        "Energía":  ["J", "kJ", "Wh", "kWh", "MJ"],
+        "Energía": ["J", "kJ", "Wh", "kWh", "MJ"],
     }
 
     def crear_widget(self) -> QWidget:
@@ -180,7 +181,7 @@ class HerramientaConversionElectrica(Herramienta):
 
         categoria = self._combo_categoria.currentText()
         de_unidad = self._combo_de.currentText()
-        a_unidad  = self._combo_a.currentText()
+        a_unidad = self._combo_a.currentText()
 
         try:
             resultado = convertir_unidad(valor, de_unidad, a_unidad, categoria)

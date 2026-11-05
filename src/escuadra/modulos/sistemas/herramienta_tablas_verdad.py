@@ -104,13 +104,12 @@ class HerramientaTablasVerdad(Herramienta):
         if not re.match(r"^[A-Z0-9\(\)\&\|\!\~\^\+\*∧∨¬]+$", expresion):
             raise ValueError("Expresión contiene caracteres no permitidos.")
 
-        variables_encontradas = re.findall(r'\b[A-Z]\b', expresion)
+        variables_encontradas = re.findall(r"\b[A-Z]\b", expresion)
         variables = sorted(set(variables_encontradas))
 
         if len(variables) == 0:
             raise ValueError(
-                "No se encontraron variables en la expresión"
-                "(use letras mayúsculas A-Z)."
+                "No se encontraron variables en la expresión(use letras mayúsculas A-Z)."
             )
 
         if len(variables) > 4:
@@ -126,7 +125,7 @@ class HerramientaTablasVerdad(Herramienta):
 
         for combinacion in itertools.product([0, 1], repeat=len(variables)):
             namespace = {var: valor for var, valor in zip(variables, combinacion)}
-            namespace['__builtins__'] = {}
+            namespace["__builtins__"] = {}
 
             try:
                 resultado = eval(expresion_python, namespace)

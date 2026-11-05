@@ -8,48 +8,48 @@ Este documento contiene las referencias bibliográficas y enlaces externos utili
 
 ### Ingeniería Civil
 
-1. **Mecánica de Materiales**  
-   - Beer, F. P., Johnston, E. R., DeWolf, J. T., & Mazurek, D. F. (2017). *Mecánica de materiales* (7ma ed.). McGraw-Hill Education.  
+1. **Mecánica de Materiales**
+   - Beer, F. P., Johnston, E. R., DeWolf, J. T., & Mazurek, D. F. (2017). *Mecánica de materiales* (7ma ed.). McGraw-Hill Education.
    - [Enlace a la editorial](https://www.mheducation.com/)
 
-2. **Diseño de estructuras de acero**  
-   - McCormac, J. C., & Csernak, S. F. (2017). *Diseño de estructuras de acero* (6ta ed.). Pearson.  
+2. **Diseño de estructuras de acero**
+   - McCormac, J. C., & Csernak, S. F. (2017). *Diseño de estructuras de acero* (6ta ed.). Pearson.
    - [Enlace a la editorial](https://www.pearson.com/)
 
-3. **Mecánica de suelos**  
-   - Das, B. M. (2016). *Principles of Geotechnical Engineering* (9th ed.). Cengage Learning.  
+3. **Mecánica de suelos**
+   - Das, B. M. (2016). *Principles of Geotechnical Engineering* (9th ed.). Cengage Learning.
    - [Enlace a la editorial](https://www.cengage.com/)
 
 ---
 
 ### Ingeniería Eléctrica
 
-4. **Circuitos eléctricos**  
-   - Alexander, C. K., & Sadiku, M. N. O. (2017). *Fundamentos de circuitos eléctricos* (6ta ed.). McGraw-Hill Education.  
+4. **Circuitos eléctricos**
+   - Alexander, C. K., & Sadiku, M. N. O. (2017). *Fundamentos de circuitos eléctricos* (6ta ed.). McGraw-Hill Education.
    - [Enlace a la editorial](https://www.mheducation.com/)
 
-5. **Electrónica de potencia**  
-   - Rashid, M. H. (2017). *Electrónica de potencia: circuitos, dispositivos y aplicaciones* (4ta ed.). Pearson.  
+5. **Electrónica de potencia**
+   - Rashid, M. H. (2017). *Electrónica de potencia: circuitos, dispositivos y aplicaciones* (4ta ed.). Pearson.
    - [Enlace a la editorial](https://www.pearson.com/)
 
 ---
 
 ### Matemáticas
 
-6. **Cálculo diferencial e integral**  
-   - Stewart, J. (2017). *Cálculo de una variable: trascendentes tempranas* (7ma ed.). Cengage Learning.  
+6. **Cálculo diferencial e integral**
+   - Stewart, J. (2017). *Cálculo de una variable: trascendentes tempranas* (7ma ed.). Cengage Learning.
    - [Enlace a la editorial](https://www.cengage.com/)
 
-7. **Métodos numéricos**  
-   - Chapra, S. C., & Canale, R. P. (2015). *Métodos numéricos para ingenieros* (7ma ed.). McGraw-Hill Education.  
+7. **Métodos numéricos**
+   - Chapra, S. C., & Canale, R. P. (2015). *Métodos numéricos para ingenieros* (7ma ed.). McGraw-Hill Education.
    - [Enlace a la editorial](https://www.mheducation.com/)
 
 ---
 
 ### Sistemas
 
-8. **Redes de computadoras**  
-   - Kurose, J. F., & Ross, K. W. (2017). *Computer Networking: A Top-Down Approach* (7th ed.). Pearson.  
+8. **Redes de computadoras**
+   - Kurose, J. F., & Ross, K. W. (2017). *Computer Networking: A Top-Down Approach* (7th ed.). Pearson.
    - [Enlace a la editorial](https://www.pearson.com/)
 
 ---

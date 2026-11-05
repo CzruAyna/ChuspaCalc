@@ -25,11 +25,7 @@ def verificar_entorno():
         if importlib.util.find_spec("PySide6") is None:
             raise ImportError
     except ImportError:
-        print(
-            "Error: PySide6 no está instalado.\n"
-            "Instálelo ejecutando:\n"
-            "    pip install PySide6"
-        )
+        print("Error: PySide6 no está instalado.\nInstálelo ejecutando:\n    pip install PySide6")
         sys.exit(1)
 
 
@@ -40,18 +36,12 @@ def obtener_modulos_disponibles():
     """
     Obtiene las herramientas disponibles desde el registry.
     """
-    return {
-        herramienta.nombre
-        for herramienta in descubrir_herramientas()
-    }
+    return {herramienta.nombre for herramienta in descubrir_herramientas()}
 
 
 def herramienta_no_disponible(nombre_herramienta):
     """Muestra mensaje para herramientas no implementadas."""
-    print(
-        f"La herramienta '{nombre_herramienta}' aún está en construcción "
-        "y no está disponible."
-    )
+    print(f"La herramienta '{nombre_herramienta}' aún está en construcción y no está disponible.")
 
 
 def ejecutar_herramienta(args):
@@ -66,10 +56,7 @@ def ejecutar_herramienta(args):
         return
 
     try:
-        modulo = __import__(
-            f"chuspacalc.modulos.{herramienta}",
-            fromlist=["ejecutar"]
-        )
+        modulo = __import__(f"chuspacalc.modulos.{herramienta}", fromlist=["ejecutar"])
     except (ModuleNotFoundError, ImportError):
         herramienta_no_disponible(herramienta)
         return
@@ -89,7 +76,7 @@ def ejecutar_herramienta(args):
                     "resultado": resultado,
                 },
                 ensure_ascii=False,
-                indent=2
+                indent=2,
             )
         )
     else:
@@ -139,37 +126,22 @@ def main():
 
         parser = argparse.ArgumentParser(
             prog="chuspacalc",
-            description="Herramientas de cálculo de ingeniería civil y eléctrica."
+            description="Herramientas de cálculo de ingeniería civil y eléctrica.",
         )
 
-        parser.add_argument(
-            "--version",
-            "-v",
-            action="version",
-            version=f"%(prog)s {__version__}"
-        )
+        parser.add_argument("--version", "-v", action="version", version=f"%(prog)s {__version__}")
 
-        parser.add_argument(
-            "--json",
-            action="store_true",
-            help="Muestra la salida en formato JSON"
-        )
+        parser.add_argument("--json", action="store_true", help="Muestra la salida en formato JSON")
 
         subparsers = parser.add_subparsers(
-            title="herramientas",
-            dest="herramienta",
-            help="Herramienta a ejecutar"
+            title="herramientas", dest="herramienta", help="Herramienta a ejecutar"
         )
 
-        subparsers.add_parser(
-            "interactivo",
-            help="Modo interactivo paso a paso (REPL)"
-        )
+        subparsers.add_parser("interactivo", help="Modo interactivo paso a paso (REPL)")
 
         # Subcomando: version
         version_parser = subparsers.add_parser(
-            "version",
-            help="Muestra la versión del proyecto y datos de diagnóstico del entorno"
+            "version", help="Muestra la versión del proyecto y datos de diagnóstico del entorno"
         )
         version_parser.set_defaults(func=cmd_version)
 
@@ -178,23 +150,19 @@ def main():
         codigos_carrera = ", ".join(c.codigo for c in agrupadas)
 
         listar_parser = subparsers.add_parser(
-            "listar",
-            help="Lista todas las herramientas disponibles agrupadas por carrera"
+            "listar", help="Lista todas las herramientas disponibles agrupadas por carrera"
         )
         listar_parser.add_argument(
             "--carrera",
             metavar="CARRERA",
             help=f"Filtra por carrera. Valores posibles: {codigos_carrera}",
-            default=None
+            default=None,
         )
         listar_parser.set_defaults(func=cmd_listar)
 
         herramientas = descubrir_herramientas()
         for herramienta in herramientas:
-            subparsers.add_parser(
-                herramienta.nombre,
-                help=herramienta.descripcion
-            )
+            subparsers.add_parser(herramienta.nombre, help=herramienta.descripcion)
 
         argcomplete.autocomplete(parser)
         args = parser.parse_args()

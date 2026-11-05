@@ -2,10 +2,7 @@ import math
 
 
 def calcular_potencia_trifasica(
-    voltaje_linea: float,
-    corriente_linea: float,
-    factor_potencia: float,
-    conexion: str = "estrella"
+    voltaje_linea: float, corriente_linea: float, factor_potencia: float, conexion: str = "estrella"
 ) -> dict[str, float]:
     """
     Calcula la potencia trifásica activa, reactiva y aparente.

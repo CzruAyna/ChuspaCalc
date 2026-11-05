@@ -16,6 +16,7 @@ def copiar_al_portapapeles(texto):
     Copia texto al portapapeles.
     """
     from PySide6.QtWidgets import QApplication
+
     app = QApplication.instance()
 
     if app is None:

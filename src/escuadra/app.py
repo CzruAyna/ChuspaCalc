@@ -64,9 +64,7 @@ def main() -> None:
         )
 
         # Conectar Acerca de
-        ventana.accion_acerca_de().triggered.connect(
-            lambda: mostrar_acerca_de(parent=ventana)
-        )
+        ventana.accion_acerca_de().triggered.connect(lambda: mostrar_acerca_de(parent=ventana))
 
         ventana.show()
         sys.exit(app.exec())

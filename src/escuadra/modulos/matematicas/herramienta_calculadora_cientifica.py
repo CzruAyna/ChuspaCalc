@@ -10,8 +10,7 @@ class HerramientaCalculadoraCientifica(Herramienta):
     nombre = "Calculadora científica"
     carrera = Carrera.MATEMATICAS
     descripcion = (
-        "Calculadora con operaciones aritméticas, trigonométricas, "
-        "logarítmicas y constantes."
+        "Calculadora con operaciones aritméticas, trigonométricas, logarítmicas y constantes."
     )
 
     def __init__(self):
@@ -21,8 +20,8 @@ class HerramientaCalculadoraCientifica(Herramienta):
         if not expresion or not isinstance(expresion, str):
             raise ValueError("La expresión debe ser una cadena de texto válida.")
 
-        expresion_limpia = expresion.replace('^', '**')
-        expresion_limpia = expresion_limpia.replace('π', 'math.pi')
+        expresion_limpia = expresion.replace("^", "**")
+        expresion_limpia = expresion_limpia.replace("π", "math.pi")
 
         entorno_seguro = {
             "math": math,
@@ -33,7 +32,7 @@ class HerramientaCalculadoraCientifica(Herramienta):
             "ln": math.log,
             "sqrt": math.sqrt,
             "pi": math.pi,
-            "e": math.e
+            "e": math.e,
         }
 
         if modo_angular == "Grados":

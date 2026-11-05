@@ -243,4 +243,3 @@ print(f"Área: {resultado:.4f} m²")
 ```
 Área: 0.7854 m²
 ```
-

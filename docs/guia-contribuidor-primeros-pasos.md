@@ -35,7 +35,7 @@ Un fork crea una copia del repositorio bajo tu cuenta de GitHub. Es necesario po
 
 **Cómo hacerlo:**
 1. Ingresa a la página del repositorio de ChuspaCalc en GitHub.
-2. Haz clic en el botón **Fork** (esquina superior derecha).    
+2. Haz clic en el botón **Fork** (esquina superior derecha).
 3. Selecciona tu cuenta personal como destino y confirma.
 
 Al terminar, tendrás el repositorio disponible en `https://github.com/TU_USUARIO/ChuspaCalc`.

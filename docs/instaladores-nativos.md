@@ -1,6 +1,6 @@
 # Instaladores Nativos por Plataforma
 
-> **Nota Estado Actual:** La compilacion mediante `pyinstaller ChuspaCalc.spec` y `python build_app.py` genera **ejecutables directores/portables** en la carpeta `dist/`. Los instaladores con asistentes interactivos (.msi, .dmg, .deb) descritos en este documento no estan implementados aun y se consideran trabajo futuro (**Roadmap**). 
+> **Nota Estado Actual:** La compilacion mediante `pyinstaller ChuspaCalc.spec` y `python build_app.py` genera **ejecutables directores/portables** en la carpeta `dist/`. Los instaladores con asistentes interactivos (.msi, .dmg, .deb) descritos en este documento no estan implementados aun y se consideran trabajo futuro (**Roadmap**).
 
 ## Descripcion general
 

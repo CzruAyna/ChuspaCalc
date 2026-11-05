@@ -6,7 +6,7 @@ Este documento describe el estado actual del sistema de configuración en Chuspa
 
 ## 📌 Estado actual
 
-Actualmente, la aplicación cuenta con un sistema de configuración básico pero funcional. 
+Actualmente, la aplicación cuenta con un sistema de configuración básico pero funcional.
 
 El módulo `src/ChuspaCalc/config/loader.py` se encarga de **cargar y guardar** un único archivo de configuración en formato YAML.
 

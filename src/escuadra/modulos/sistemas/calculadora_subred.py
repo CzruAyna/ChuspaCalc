@@ -57,4 +57,3 @@ def calcular_subred(ip: str, prefijo_cidr: str) -> dict:
         "ultimo_host": ultimo_host,
         "total_hosts": total_hosts,
     }
-    

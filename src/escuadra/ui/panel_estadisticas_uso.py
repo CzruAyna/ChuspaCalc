@@ -5,7 +5,6 @@ Genera un resumen del historial persistente mostrando
 la cantidad de usos por herramienta y carrera.
 """
 
-
 from collections import Counter
 
 
@@ -30,9 +29,7 @@ class PanelEstadisticasUso:
         """Cuenta el uso agrupado por carrera."""
 
         carreras = [
-            registro.get("carrera")
-            for registro in self.historial
-            if registro.get("carrera")
+            registro.get("carrera") for registro in self.historial if registro.get("carrera")
         ]
 
         return dict(Counter(carreras))
@@ -42,7 +39,7 @@ class PanelEstadisticasUso:
 
         return {
             "herramientas": self.contar_por_herramienta(),
-            "carreras": self.contar_por_carrera()
+            "carreras": self.contar_por_carrera(),
         }
 
     def generar_grafico_barras(self):
@@ -53,6 +50,4 @@ class PanelEstadisticasUso:
         o matplotlib.
         """
 
-        return list(
-            self.contar_por_herramienta().items()
-        )
+        return list(self.contar_por_herramienta().items())

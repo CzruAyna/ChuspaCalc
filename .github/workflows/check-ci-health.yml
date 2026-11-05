@@ -4,7 +4,7 @@ on:
   schedule:
     # se ejecuta cada 6 horas para verificar el estado de main
     - cron: '0 */6 * * *'
-  workflow_dispatch: 
+  workflow_dispatch:
   # permite ejecutarlo manualmente para pruebas
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
         run: |
           # obtener el último ejecutable exitoso en main para ci.yml
           LAST_SUCCESS=$(gh run list --workflow=ci.yml --branch=main --status=success --limit 1 --json updatedAt -q '.[0].updatedAt')
-          
+
           if [ -z "$LAST_SUCCESS" ]; then
             echo "No se encontraron ejecuciones exitosas previas."
             exit 0
@@ -39,7 +39,7 @@ jobs:
           if [ "$DIFF_HOURS" -ge 24 ]; then
             echo "CI lleva fallando más de 24h. Verificando si ya existe un Issue abierto..."
             EXISTING_ISSUE=$(gh issue list --search "ALERTA: CI lleva fallando más de 24 horas in:title state:open" --json number -q '.[0].number')
-            
+
             if [ -z "$EXISTING_ISSUE" ]; then
               echo "creando Issue de notificación..."
               gh issue create \

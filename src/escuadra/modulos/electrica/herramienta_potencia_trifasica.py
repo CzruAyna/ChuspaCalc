@@ -124,15 +124,11 @@ class HerramientaPotenciaTrifasica(Herramienta):
             try:
                 v = float(texto)
                 if v < 0:
-                    self._error_label.setText(
-                        f"Error: el valor de {clave} debe ser positivo."
-                    )
+                    self._error_label.setText(f"Error: el valor de {clave} debe ser positivo.")
                     return
                 valores[clave] = v
             except ValueError:
-                self._error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self._error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
 
         # Obtener tipo de conexión
@@ -151,9 +147,7 @@ class HerramientaPotenciaTrifasica(Herramienta):
             return
 
         # Mostrar resultados
-        self._resultados["potencia_activa"].setText(
-            str(round(resultados["potencia_activa"], 4))
-        )
+        self._resultados["potencia_activa"].setText(str(round(resultados["potencia_activa"], 4)))
         self._resultados["potencia_reactiva"].setText(
             str(round(resultados["potencia_reactiva"], 4))
         )

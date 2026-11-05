@@ -35,7 +35,4 @@ def test_simplificar_expresion_todos_unos_devuelve_uno():
 def test_simplificar_expresion_mapa_mixto_devuelve_mensaje_basico():
     mapa = [[0, 1], [1, 0]]
 
-    assert (
-        simplificar_expresion(mapa)
-        == "Expresión simplificada (caso básico)"
-    )
+    assert simplificar_expresion(mapa) == "Expresión simplificada (caso básico)"

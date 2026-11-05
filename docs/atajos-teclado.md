@@ -18,4 +18,4 @@ Se han asignado combinaciones de teclas para acceder de forma instantánea a las
 | `Ctrl + 8` | Abre la 8.ª herramienta más reciente del historial |
 | `Ctrl + 9` | Abre la 9.ª herramienta más reciente del historial |
 
-> **Nota:** Si el historial cuenta con menos de 9 herramientas registradas, los atajos que superen la cantidad disponible no ejecutarán ninguna acción para evitar errores en la interfaz. 
+> **Nota:** Si el historial cuenta con menos de 9 herramientas registradas, los atajos que superen la cantidad disponible no ejecutarán ninguna acción para evitar errores en la interfaz.

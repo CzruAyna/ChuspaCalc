@@ -1,8 +1,8 @@
 # Informe de Pruebas — Sprint [N]
 
-**Fecha:** 
-**Versión probada:** 
-**Responsable QA:** 
+**Fecha:**
+**Versión probada:**
+**Responsable QA:**
 
 ---
 

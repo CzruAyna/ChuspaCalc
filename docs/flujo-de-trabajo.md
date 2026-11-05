@@ -2,7 +2,7 @@
 
 ## Introducción
 
-El **Forking Workflow** es una forma de trabajo colaborativo en GitHub donde cada integrante realiza una copia del repositorio principal, llamada **fork**.  
+El **Forking Workflow** es una forma de trabajo colaborativo en GitHub donde cada integrante realiza una copia del repositorio principal, llamada **fork**.
 Desde ese fork, cada persona puede trabajar en una rama propia, hacer cambios, subirlos a GitHub y proponerlos al proyecto principal mediante un **Pull Request**.
 
 Este flujo ayuda a mantener ordenado el trabajo del equipo y evita modificar directamente las ramas principales del repositorio original.
@@ -291,5 +291,5 @@ Esto ayuda a evitar conflictos al momento de abrir el Pull Request.
 
 ## Conclusión
 
-El Forking Workflow permite colaborar de manera ordenada en ChuspaCalc.  
+El Forking Workflow permite colaborar de manera ordenada en ChuspaCalc.
 Cada integrante trabaja desde su propio fork, crea una rama para cada tarea, realiza sus cambios, los sube a GitHub y finalmente abre un Pull Request para que el equipo pueda revisarlos antes de integrarlos al proyecto principal.

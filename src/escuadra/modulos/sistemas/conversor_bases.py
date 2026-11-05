@@ -1,5 +1,6 @@
 BASES_SOPORTADAS = {2, 8, 10, 16}
 
+
 def convertir(numero: str, base_origen: int, base_destino: int) -> dict:
     """
     Convierte números entre bases 2, 8, 10 y 16.
@@ -19,9 +20,7 @@ def convertir(numero: str, base_origen: int, base_destino: int) -> dict:
     try:
         valor_decimal = int(numero, base_origen)
     except ValueError as error:
-        raise ValueError(
-            f"Número inválido para base {base_origen}: {numero}"
-        ) from error
+        raise ValueError(f"Número inválido para base {base_origen}: {numero}") from error
 
     if base_destino == 2:
         resultado = bin(valor_decimal)[2:]
@@ -36,5 +35,5 @@ def convertir(numero: str, base_origen: int, base_destino: int) -> dict:
         "numero_original": numero,
         "base_origen": base_origen,
         "resultado": resultado,
-        "base_destino": base_destino
+        "base_destino": base_destino,
     }

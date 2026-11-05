@@ -1,7 +1,19 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QTableWidget, QTableWidgetItem, QSpinBox
+from PySide6.QtWidgets import (
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+    QSpinBox,
+    QTableWidget,
+    QTableWidgetItem,
+    QVBoxLayout,
+    QWidget,
+)
 
 from escuadra.core.carrera import Carrera
 from escuadra.core.herramienta import Herramienta
+
+from .karnaugh import generar_mapa_karnaugh, simplificar_expresion
 
 
 class HerramientaKarnaugh(Herramienta):
@@ -10,8 +22,7 @@ class HerramientaKarnaugh(Herramienta):
     carrera = Carrera.SISTEMAS
 
     descripcion = (
-        "Genera mapas de Karnaugh y realiza simplificaciones "
-        "básicas de expresiones booleanas."
+        "Genera mapas de Karnaugh y realiza simplificaciones básicas de expresiones booleanas."
     )
 
     def crear_widget(self) -> QWidget:
@@ -51,8 +62,8 @@ class HerramientaKarnaugh(Herramienta):
                     resultado.setText("Ingresa minterms ej: 0,1,3")
                     return
 
-                minterms = [int(x.strip()) for x in texto.split(",") if x.strip()!= ""]
-                total = 2 ** num_vars
+                minterms = [int(x.strip()) for x in texto.split(",") if x.strip() != ""]
+                total = 2**num_vars
                 tabla_verdad = [0] * total
                 for m in minterms:
                     if 0 <= m < total:

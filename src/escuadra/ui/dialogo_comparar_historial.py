@@ -1,45 +1,19 @@
-Dentro del __init__, después de crear la lista de historial:
-
-python
-# Botón para comparar
-self.btn_comparar = QPushButton("Comparar")
-self.btn_comparar.clicked.connect(self._comparar_seleccion)
-self.btn_comparar.setEnabled(False)
-layout.addWidget(self.btn_comparar)
-Conectar la selección:
-
-python
-self.lista_historial.itemSelectionChanged.connect(self._on_seleccion_cambiada)
-Agregar estos métodos al final de la clase:
-
-python
-def _on_seleccion_cambiada(self):
-    seleccionados = self.lista_historial.selectedItems()
-    self.btn_comparar.setEnabled(len(seleccionados) == 2)
-
-def _comparar_seleccion(self):
-    from src.chuspacalc.ui.dialogo_comparar_historial import DialogoCompararHistorial
-    seleccionados = self.lista_historial.selectedItems()
-    if len(seleccionados) == 2:
-        entrada1 = self._obtener_datos(seleccionados[0])
-        entrada2 = self._obtener_datos(seleccionados[1])
-        dialogo = DialogoCompararHistorial(entrada1, entrada2, self)
-        dialogo.exec()
-
-def _obtener_datos(self, item):
-    return {"texto": item.text()}  # ajusta según tu estructura
-
-
-
 """
 Diálogo para comparar dos entradas del historial lado a lado.
 """
 
-from PySide6.QtWidgets import (
-    QDialog, QVBoxLayout, QHBoxLayout, QLabel,
-    QPushButton, QWidget, QScrollArea
-)
+from html import escape
+
 from PySide6.QtCore import Qt
+from PySide6.QtWidgets import (
+    QDialog,
+    QHBoxLayout,
+    QLabel,
+    QPushButton,
+    QScrollArea,
+    QVBoxLayout,
+    QWidget,
+)
 
 
 class DialogoCompararHistorial(QDialog):
@@ -94,14 +68,16 @@ class DialogoCompararHistorial(QDialog):
     def _crear_panel(self, entrada, titulo):
         """Crea un panel para una entrada del historial."""
         panel = QWidget()
-        panel.setStyleSheet("""
+        panel.setStyleSheet(
+            """
             QWidget {
                 border: 1px solid #ccc;
                 border-radius: 8px;
                 padding: 10px;
                 margin: 5px;
             }
-        """)
+        """
+        )
         panel_layout = QVBoxLayout()
         panel.setLayout(panel_layout)
 
@@ -127,6 +103,7 @@ class DialogoCompararHistorial(QDialog):
         lineas = []
         for clave, valor in entrada.items():
             if clave == "id":
+                continue
+            lineas.append(f"<b>{escape(str(clave))}:</b> {escape(str(valor))}")
 
         return "<br>".join(lineas)
-

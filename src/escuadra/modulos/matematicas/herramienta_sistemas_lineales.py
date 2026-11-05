@@ -20,9 +20,10 @@ from escuadra.math.sistemas_lineales_nxn import resolver_sistema
 
 # ── Widget ───────────────────────────────────────────────────────────────────
 
+
 class HerramientaSistemasLineales(Herramienta):
-    nombre      = "Sistemas de ecuaciones lineales"
-    carrera     = Carrera.MATEMATICAS
+    nombre = "Sistemas de ecuaciones lineales"
+    carrera = Carrera.MATEMATICAS
     descripcion = "Resuelve sistemas A·x = b para tamaños entre 2x2 y 5x5."
 
     def crear_widget(self) -> QWidget:
@@ -50,7 +51,7 @@ class HerramientaSistemasLineales(Herramienta):
         botones = QHBoxLayout()
         btn_resolver = QPushButton("Resolver")
         btn_resolver.clicked.connect(self._resolver)
-        btn_limpiar  = QPushButton("Limpiar")
+        btn_limpiar = QPushButton("Limpiar")
         btn_limpiar.clicked.connect(self._limpiar)
         botones.addWidget(btn_resolver)
         botones.addWidget(btn_limpiar)
@@ -92,10 +93,14 @@ class HerramientaSistemasLineales(Herramienta):
         # Limpiar grilla anterior
         while self._grilla_container.count():
             item = self._grilla_container.takeAt(0)
-            if item.widget():
-                item.widget().deleteLater()
-            elif item.layout():
-                self._limpiar_layout(item.layout())
+            if item is None:
+                break
+            widget = item.widget()
+            layout = item.layout()
+            if widget is not None:
+                widget.deleteLater()
+            elif layout is not None:
+                self._limpiar_layout(layout)
 
         # Crear nueva grilla
         grilla = QGridLayout()
@@ -103,14 +108,14 @@ class HerramientaSistemasLineales(Herramienta):
 
         # Encabezados
         for j in range(n):
-            grilla.addWidget(QLabel(f"x{j+1}"), 0, j + 1)
+            grilla.addWidget(QLabel(f"x{j + 1}"), 0, j + 1)
         grilla.addWidget(QLabel("b"), 0, n + 2)
 
         self._inputs_A = []
         self._inputs_b = []
 
         for i in range(n):
-            grilla.addWidget(QLabel(f"Ec {i+1}:"), i + 1, 0)
+            grilla.addWidget(QLabel(f"Ec {i + 1}:"), i + 1, 0)
             fila_inputs = []
             for j in range(n):
                 campo = QLineEdit()
@@ -160,7 +165,7 @@ class HerramientaSistemasLineales(Herramienta):
                     fila.append(float(texto))
                 except ValueError:
                     self._error_label.setText(
-                        f"Error: valor inválido en A[{i+1}][{j+1}]: «{texto}»"
+                        f"Error: valor inválido en A[{i + 1}][{j + 1}]: «{texto}»"
                     )
                     return
             A.append(fila)
@@ -172,21 +177,17 @@ class HerramientaSistemasLineales(Herramienta):
             try:
                 b.append(float(texto))
             except ValueError:
-                self._error_label.setText(
-                    f"Error: valor inválido en b[{i+1}]: «{texto}»"
-                )
+                self._error_label.setText(f"Error: valor inválido en b[{i + 1}]: «{texto}»")
                 return
 
         # Resolver
         solucion = resolver_sistema(A, b)
 
         if solucion is None:
-            self._error_label.setText(
-                "El sistema no tiene solución única (matriz singular)."
-            )
+            self._error_label.setText("El sistema no tiene solución única (matriz singular).")
             return
 
-        lineas = [f"x{i+1} = {round(v, 6)}" for i, v in enumerate(solucion)]
+        lineas = [f"x{i + 1} = {round(v, 6)}" for i, v in enumerate(solucion)]
         self._resultado_label.setText("Solución:\n" + "\n".join(lineas))
 
     def _limpiar(self) -> None:

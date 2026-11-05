@@ -24,11 +24,9 @@ def resolver_sistema(A: list[list[float]], b: list[float]) -> list[float] | None
 
     n = len(A)
 
-    for fila in A:
-        if len(fila) != n:
-            raise ValueError(
-                f"La matriz A debe ser cuadrada: se esperaban filas de tamaño {n}."
-            )
+    for fila_datos in A:
+        if len(fila_datos) != n:
+            raise ValueError(f"La matriz A debe ser cuadrada: se esperaban filas de tamaño {n}.")
 
     if len(b) != n:
         raise ValueError(f"El vector de términos independientes debe tener tamaño {n}.")
@@ -38,7 +36,6 @@ def resolver_sistema(A: list[list[float]], b: list[float]) -> list[float] | None
 
     # Eliminación hacia adelante con pivoteo parcial
     for col in range(n):
-
         # Buscar la fila con el mayor valor absoluto en esta columna (pivote)
         fila_pivote = max(range(col, n), key=lambda f: abs(M[f][col]))
 

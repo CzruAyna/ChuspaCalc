@@ -7,7 +7,7 @@ completo de Quine-McCluskey.
 """
 
 
-def generar_mapa_karnaugh(tabla_verdad: list[int], num_variables: int) -> list[list[int]]:
+def generar_mapa_karnaugh(tabla_verdad: list[int], num_variables: int) -> list[int]:
     """
     Genera un mapa de Karnaugh básico (hasta 4 variables).
 

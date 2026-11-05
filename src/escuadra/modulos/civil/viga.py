@@ -4,7 +4,7 @@ Modulo para el Calculo de reacciones en vigas simplemente apoyadas.
 """
 
 
-def calcular_reacciones(longitud: float, carga: float, posicion: float = None) -> dict:
+def calcular_reacciones(longitud: float, carga: float, posicion: float | None = None) -> dict:
     """
     Calcula las reacciones Ra y Rb de una viga simplemente apoyada.
     Si posicion es None, asume carga distribuida uniforme.
@@ -17,8 +17,7 @@ def calcular_reacciones(longitud: float, carga: float, posicion: float = None) -
         raise ValueError(f"La carga debe ser mayor que 0. Valor recibido: {carga}")
     if posicion is not None and not (0 <= posicion <= longitud):
         raise ValueError(
-            f"La posición debe estar en el intervalo [0, {longitud}]. "
-            f"Valor recibido: {posicion}"
+            f"La posición debe estar en el intervalo [0, {longitud}]. Valor recibido: {posicion}"
         )
 
     # Cálculo de reacciones
@@ -31,8 +30,4 @@ def calcular_reacciones(longitud: float, carga: float, posicion: float = None) -
         Rb = carga * posicion / longitud
         Ra = carga - Rb
 
-    return {
-        "Ra": round(Ra, 4),
-        "Rb": round(Rb, 4),
-        "unidad": "kN"
-    }
+    return {"Ra": round(Ra, 4), "Rb": round(Rb, 4), "unidad": "kN"}

@@ -9,7 +9,7 @@ class Historial:
     LIMITE = 20
 
     def __init__(self):
-        self._historial = []
+        self._historial: list[dict] = []
 
     def agregar_calculo(
         self,

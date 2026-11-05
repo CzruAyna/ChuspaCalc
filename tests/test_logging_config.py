@@ -6,7 +6,7 @@ from escuadra.utils.logging_config import configurar_logging, obtener_logger
 def test_configurar_logging_debug():
     configurar_logging("DEBUG")
 
-    logger = logging.getLogger("escuadra")
+    logger = logging.getLogger("chuspacalc")
 
     assert logger.level == logging.DEBUG
 
@@ -14,13 +14,14 @@ def test_configurar_logging_debug():
 def test_configurar_logging_nivel_invalido():
     configurar_logging("XYZ")
 
-    logger = logging.getLogger("escuadra")
+    logger = logging.getLogger("chuspacalc")
 
     assert logger.level == logging.INFO
 
 
 def test_configurar_logging_no_duplica_handlers():
-    logger = logging.getLogger("escuadra")
+    configurar_logging("INFO")
+    logger = logging.getLogger("chuspacalc")
 
     antes = len(logger.handlers)
 
@@ -31,7 +32,7 @@ def test_configurar_logging_no_duplica_handlers():
 
 
 def test_configurar_logging_formato_handler():
-    logger = logging.getLogger("escuadra")
+    logger = logging.getLogger("chuspacalc")
 
     if not logger.handlers:
         configurar_logging("INFO")

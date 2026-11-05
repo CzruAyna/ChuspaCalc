@@ -3,22 +3,14 @@ Despachador de comandos que mapea subcomandos a funciones ejecutables
 consultando dinámicamente al registry.
 """
 
-import importlib
 import sys
 
-from chuspacalc.core import registry
+from . import registry
 
 
 def _cargar_modulos_dinamicos() -> None:
     """Carga dinámicamente los módulos de la carpeta 'modulos'."""
-    if registry.MODULOS_DIR.exists():
-        for archivo in registry.MODULOS_DIR.glob("*.py"):
-            if archivo.name != "__init__.py":
-                nombre_modulo = f"chuspacalc.modulos.{archivo.stem}"
-                try:
-                    importlib.import_module(nombre_modulo)
-                except (ImportError, ModuleNotFoundError):
-                    pass
+    registry.descubrir_herramientas()
 
 
 def dispatch(subcommand: str) -> int:
@@ -42,21 +34,18 @@ def dispatch(subcommand: str) -> int:
     # Forzamos el descubrimiento automático de submódulos antes de consultar
     _cargar_modulos_dinamicos()
 
-    tools = registry.get_tools()
-    handler = tools.get(subcommand)
-
-    if handler is None:
-        print(
-            f"Error: subcomando desconocido '{subcommand}'",
-            file=sys.stderr,
-        )
-        return 1
-
     try:
-        return handler()
+        herramienta = registry.buscar_por_nombre(subcommand)
+        if herramienta is None:
+            print(f"Error: subcomando desconocido '{subcommand}'", file=sys.stderr)
+            return 1
+        instancia = herramienta()
+        ejecutar = getattr(instancia, "ejecutar", None)
+        if not callable(ejecutar):
+            print("Error: la herramienta no ofrece ejecucion por consola.", file=sys.stderr)
+            return 1
+        codigo = ejecutar()
+        return 0 if codigo is None else int(codigo)
     except (ImportError, ModuleNotFoundError):
-        print(
-            "Error: El módulo solicitado no está disponible o no existe.",
-            file=sys.stderr,
-        )
+        print("Error: El modulo solicitado no esta disponible o no existe.", file=sys.stderr)
         return 1

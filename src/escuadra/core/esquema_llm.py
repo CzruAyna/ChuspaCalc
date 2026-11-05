@@ -13,8 +13,10 @@ Uso:
 from __future__ import annotations
 
 import json
+
 from chuspacalc.core.registry import descubrir_herramientas
 
+from .herramienta import Herramienta
 
 # Mapa de tipos Python a tipos JSON Schema
 _TIPO_JSON: dict[str, str] = {
@@ -32,7 +34,7 @@ def _tipo_json(anotacion: str) -> str:
     return _TIPO_JSON.get(anotacion, "string")
 
 
-def _herramienta_a_funcion(herramienta: type) -> dict:
+def _herramienta_a_funcion(herramienta: type[Herramienta]) -> dict:
     """
     Convierte una clase Herramienta al formato de función
     compatible con function-calling de LLMs.
@@ -50,9 +52,19 @@ def _herramienta_a_funcion(herramienta: type) -> dict:
     """
     import inspect
 
-    nombre = herramienta.nombre.lower().replace(" ", "_").replace("á", "a") \
-        .replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u") \
-        .replace("ñ", "n").replace("ü", "u").replace(",", "").replace(".", "")
+    nombre = (
+        herramienta.nombre.lower()
+        .replace(" ", "_")
+        .replace("á", "a")
+        .replace("é", "e")
+        .replace("í", "i")
+        .replace("ó", "o")
+        .replace("ú", "u")
+        .replace("ñ", "n")
+        .replace("ü", "u")
+        .replace(",", "")
+        .replace(".", "")
+    )
 
     descripcion = herramienta.descripcion
     carrera = herramienta.carrera.value if herramienta.carrera else "general"
@@ -75,9 +87,11 @@ def _herramienta_a_funcion(herramienta: type) -> dict:
 
             anotacion = "string"
             if param.annotation != inspect.Parameter.empty:
-                anotacion = _tipo_json(param.annotation.__name__
-                                       if hasattr(param.annotation, "__name__")
-                                       else str(param.annotation))
+                anotacion = _tipo_json(
+                    param.annotation.__name__
+                    if hasattr(param.annotation, "__name__")
+                    else str(param.annotation)
+                )
 
             params_metodo[param_nombre] = {
                 "type": anotacion,

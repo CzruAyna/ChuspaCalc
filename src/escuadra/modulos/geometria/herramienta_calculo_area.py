@@ -1,3 +1,6 @@
+from collections.abc import Callable
+from typing import TypedDict
+
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QComboBox,
@@ -20,8 +23,14 @@ from chuspacalc.modulos.geometria.calculo_area import (
     area_triangulo,
 )
 
+
 # Configuración de cada figura: nombre visible → (campos requeridos, función de cálculo)
-_FIGURAS = {
+class _ConfiguracionFigura(TypedDict):
+    campos: list[tuple[str, str]]
+    calcular: Callable[[list[float]], float]
+
+
+_FIGURAS: dict[str, _ConfiguracionFigura] = {
     "Triángulo": {
         "campos": [("Base", "m"), ("Altura", "m")],
         "calcular": lambda v: area_triangulo(v[0], v[1]),
@@ -47,8 +56,7 @@ class HerramientaCalculoArea(Herramienta):
     nombre = "Cálculo de áreas"
     carrera = Carrera.GEOMETRIA
     descripcion = (
-        "Calcula el área de figuras geométricas básicas: "
-        "triángulo, círculo, rectángulo y trapecio."
+        "Calcula el área de figuras geométricas básicas: triángulo, círculo, rectángulo y trapecio."
     )
 
     def crear_widget(self) -> QWidget:
@@ -142,16 +150,12 @@ class HerramientaCalculoArea(Herramienta):
         for i in range(n_campos):
             texto = self._inputs[i].text().strip()
             if not texto:
-                self.error_label.setText(
-                    f"Error: el campo «{config['campos'][i][0]}» está vacío."
-                )
+                self.error_label.setText(f"Error: el campo «{config['campos'][i][0]}» está vacío.")
                 return
             try:
                 valor = float(texto)
             except ValueError:
-                self.error_label.setText(
-                    f"Error: «{texto}» no es un número válido."
-                )
+                self.error_label.setText(f"Error: «{texto}» no es un número válido.")
                 return
             valores.append(valor)
 

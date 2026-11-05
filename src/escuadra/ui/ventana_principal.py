@@ -4,6 +4,7 @@ Contiene la clase VentanaPrincipal que hereda de QMainWindow.
 """
 
 from typing import Callable
+
 from PySide6.QtGui import QAction, QKeySequence, QShortcut
 from PySide6.QtWidgets import QApplication, QMainWindow, QMenu, QStackedWidget, QStatusBar, QWidget
 
@@ -20,7 +21,7 @@ class VentanaPrincipal(QMainWindow):
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
 
-        self.setWindowTitle("Escuadra")
+        self.setWindowTitle("ChuspaCalc")
         self.resize(1000, 700)
 
         self._configurar_menus()

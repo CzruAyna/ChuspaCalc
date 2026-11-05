@@ -57,6 +57,9 @@ def load(path: str) -> dict:
     if contenido is None:
         return {}
 
+    if not isinstance(contenido, dict):
+        raise ValueError("La configuracion YAML debe contener un diccionario.")
+
     return contenido
 
 
@@ -92,9 +95,7 @@ def save_font_scale(scale: float) -> None:
         ValueError: Si la escala no es una de las opciones válidas.
     """
     if scale not in FONT_SCALE_OPTIONS:
-        raise ValueError(
-            f"Escala inválida: {scale}. Opciones válidas: {FONT_SCALE_OPTIONS}"
-        )
+        raise ValueError(f"Escala inválida: {scale}. Opciones válidas: {FONT_SCALE_OPTIONS}")
 
     config_path = _get_config_path()
     config = {}

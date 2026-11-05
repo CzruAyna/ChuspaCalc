@@ -40,9 +40,9 @@ def test_cargar_con_lista_lanza_error_de_tipo():
 def test_actualizar_cambia_formato_e_ignora_clave_desconocida():
     plantilla = PlantillaExportacion()
 
-    plantilla.actualizar(formato="md", inexistente=1)
+    plantilla.actualizar(formato="markdown", inexistente=1)
 
-    assert plantilla.formato == "md"
+    assert plantilla.formato == "markdown"
     assert not hasattr(plantilla, "inexistente")
 
 

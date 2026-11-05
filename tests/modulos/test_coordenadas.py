@@ -1,8 +1,8 @@
 from escuadra.modulos.geometria.coordenadas import (
-    cartesiana_a_polar,
-    polar_a_cartesiana,
     cartesiana_a_cilindrica,
     cartesiana_a_esferica,
+    cartesiana_a_polar,
+    polar_a_cartesiana,
 )
 
 
@@ -40,8 +40,6 @@ def test_cartesiana_a_cilindrica():
 def test_cartesiana_a_esferica():
     resultado = cartesiana_a_esferica(0, 0, 5)
 
-    assert resultado == {
-        "rho": 5.00,
-        "theta_grados": 0.00,
-        "phi_grados": 0.00,
-    }
+    assert resultado["rho"] == 5.00
+    assert resultado["theta_grados"] == 0.00
+    assert resultado["phi_grados"] == 0.00

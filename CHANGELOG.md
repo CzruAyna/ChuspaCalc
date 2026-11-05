@@ -31,6 +31,11 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 - chore(changelog): actualización de módulos documentados en desarrollo
 
 ### Fixed
+- Reparado el entorno Linux de las pruebas Qt y las rutas de cobertura y mypy.
+- Alineadas las versiones de Black, Ruff y mypy con los hooks de desarrollo.
+- Restablecida la compatibilidad entre los paquetes escuadra y chuspacalc sin duplicar las fuentes.
+- Corregidos el despachador, la sintaxis del dialogo de comparacion y los errores de tipos.
+- Actualizadas las pruebas de nombres, formatos y coordenadas durante la migracion.
 - fix(changelog): corrección de entradas faltantes del sprint actual
 - chore(lint): limpieza de espacios en blanco y newlines finales (ruff W293/W292)
 - fix(herramienta_resolucion_triangulos): herramienta registrada en Geometría en lugar de Matemáticas y documentada

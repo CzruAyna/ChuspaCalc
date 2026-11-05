@@ -9,7 +9,6 @@ def cartesiana_a_polar(x, y):
     return {"r": r, "theta_grados": theta_grados, "theta_radianes": theta_radianes}
 
 
-
 def polar_a_cartesiana(r, theta_grados):
     """Convierte coordenadas polares (r, theta_grados) a cartesianas (x, y)."""
     theta_radianes = math.radians(theta_grados)

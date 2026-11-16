@@ -1,0 +1,52 @@
+name: Validación de ChuspaCalc 15 nov
+on:
+  push:
+    branches: [codex/validar-asignadas-15nov]
+permissions:
+  contents: read
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: [{"issue": "1930", "ref": "6af10549be9d199b017d44b7d1b4654bec3093cc", "file": "src/escuadra/math/matrix.py"}, {"issue": "1923", "ref": "5dfabc4791cd33b6c3e24aae7f1856d7138885e2", "file": "src/escuadra/io/csv_parser.py"}, {"issue": "1986", "ref": "690c55674000001a01ffcfc17ed126de4e191e5b", "file": "src/escuadra/modulos/geometria/resolucion_triangulos.py"}, {"issue": "1978", "ref": "c62b9bcd39a2deadf7f28191e20f40d6195a5479", "file": "src/escuadra/modulos/geometria/coordenadas.py"}]
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update && sudo apt-get install -y libegl1 libgl1
+      - run: pip install -e '.[dev]' black mypy
+      - name: Probar casos del issue
+        env:
+          ISSUE: ${{ matrix.issue }}
+          FILE: ${{ matrix.file }}
+        run: |
+          cp .validation/asignadas15/*.py "$RUNNER_TEMP"
+          git checkout --detach '${{ matrix.ref }}'
+          python -m ruff check "$FILE"
+          python -m black --check "$FILE"
+          python -m mypy --follow-imports=silent "$FILE"
+          python "$RUNNER_TEMP/ejecutar_calc15.py" "$ISSUE" auxiliar
+      - name: Contrastar pruebas existentes entre dev y el commit
+        env:
+          ISSUE: ${{ matrix.issue }}
+        run: |
+          git checkout --detach 'bdf5b949f14f49dfdf903a2607691f9e390a0ca2'
+          python "$RUNNER_TEMP/ejecutar_calc15.py" "$ISSUE" existentes | tee "$RUNNER_TEMP/base.log" && base=0 || base=$?
+          git checkout --detach '${{ matrix.ref }}'
+          python "$RUNNER_TEMP/ejecutar_calc15.py" "$ISSUE" existentes | tee "$RUNNER_TEMP/commit.log" && cambio=0 || cambio=$?
+          if [[ "$ISSUE" == 1978 ]]; then
+            test "$base" -eq 1
+            test "$cambio" -eq 1
+            grep -F 'FAILED tests/modulos/test_coordenadas.py::test_cartesiana_a_esferica' "$RUNNER_TEMP/base.log"
+            grep -F 'FAILED tests/modulos/test_coordenadas.py::test_cartesiana_a_esferica' "$RUNNER_TEMP/commit.log"
+          else
+            test "$cambio" -eq 0
+          fi

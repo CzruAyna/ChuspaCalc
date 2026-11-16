@@ -35,6 +35,7 @@ jobs:
           python -m mypy --follow-imports=silent "$FILE"
           python "$RUNNER_TEMP/ejecutar_calc15.py" "$ISSUE" auxiliar
       - name: Contrastar pruebas existentes entre dev y el commit
+        shell: bash
         env:
           ISSUE: ${{ matrix.issue }}
         run: |

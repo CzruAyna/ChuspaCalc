@@ -1,0 +1,85 @@
+name: Validación de las correcciones de ChuspaCalc
+on:
+  push:
+    branches: [codex/validar-correcciones-17nov]
+permissions:
+  contents: read
+jobs:
+  correcciones:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: [{"issue": "1930", "ref": "8238a76d784df30657e8b615a09b3fee5bfce5e2", "archivo": "src/chuspacalc/math/matrix.py"}, {"issue": "1923", "ref": "1bca62af471151c6d0870759100111cfd7a35b18", "archivo": "src/chuspacalc/io/csv_parser.py"}, {"issue": "1986", "ref": "65a89d2c45b51e08de301ab108caa8bca8bb2346", "archivo": "src/chuspacalc/modulos/geometria/resolucion_triangulos.py"}, {"issue": "1978", "ref": "8e1a7606bfcd4027f42c17d634be1d3da8e0bf4b", "archivo": "src/chuspacalc/modulos/geometria/coordenadas.py"}]
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Instalar Qt y herramientas
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libegl1 libgl1
+          python -m pip install -e . -r requirements-dev.txt black
+      - name: Comprobar el archivo corregido
+        env:
+          ARCHIVO: ${{ matrix.archivo }}
+        run: |
+          cp .validation/*.py "$RUNNER_TEMP"
+          git checkout --detach '${{ matrix.ref }}'
+          git diff --check '4bf145c7f6493db0a9e763ea2e805dcde13ef971...HEAD'
+          test "$(git diff --name-only '4bf145c7f6493db0a9e763ea2e805dcde13ef971...HEAD')" = "$ARCHIVO"
+          python -m ruff check "$ARCHIVO"
+          python -m black --check "$ARCHIVO"
+          python -m mypy --follow-imports=skip "$ARCHIVO"
+      - name: Pruebas de la issue y sus límites de entrada
+        run: python "$RUNNER_TEMP/ejecutar_revision_calc17.py" --issue '${{ matrix.issue }}'
+      - name: Ejecutar toda la suite de dev con la corrección
+        run: python "$RUNNER_TEMP/ejecutar_revision_calc17.py" --completo --junit "$RUNNER_TEMP/resultados.xml"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resultados-issue-${{ matrix.issue }}
+          path: ${{ runner.temp }}/resultados.xml
+          if-no-files-found: ignore
+  control-de-dev:
+    runs-on: ubuntu-latest
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: |
+          cp .validation/*.py "$RUNNER_TEMP"
+          git checkout --detach '4bf145c7f6493db0a9e763ea2e805dcde13ef971'
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libegl1 libgl1
+          python -m pip install -e . -r requirements-dev.txt black
+      - name: Probar dev completo
+        run: python "$RUNNER_TEMP/ejecutar_revision_calc17.py" --completo --junit "$RUNNER_TEMP/dev-resultados.xml"
+      - name: Registrar el formato y los tipos de la base
+        shell: bash
+        run: |
+          python -m black --check src/ tests/ > "$RUNNER_TEMP/dev-black.log" 2>&1 && black=0 || black=$?
+          python -m ruff check . > "$RUNNER_TEMP/dev-ruff.log" 2>&1 && ruff=0 || ruff=$?
+          python -m mypy src/chuspacalc > "$RUNNER_TEMP/dev-mypy.log" 2>&1 && mypy=0 || mypy=$?
+          cat "$RUNNER_TEMP"/dev-*.log
+          echo "Black=$black Ruff=$ruff Mypy=$mypy"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: control-dev
+          path: |
+            ${{ runner.temp }}/dev-*.log
+            ${{ runner.temp }}/dev-resultados.xml
+          if-no-files-found: ignore
